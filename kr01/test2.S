@@ -2,7 +2,12 @@
     .global process
     .global main
 main:
+    push %ebp
+    movl %esp, %ebp
+    push $16
     call call_process
+    pop %eax
+    leave
     ret
 
 

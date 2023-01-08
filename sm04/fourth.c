@@ -21,7 +21,7 @@ void normalize_path(char *buf) {
 }
 
 int main(void) {
-    char str[] = "////a/////h";
+    char str[] = "////A/////h";
     normalize_path(str);
     printf("%s\n", str);
 }
