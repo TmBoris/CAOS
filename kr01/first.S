@@ -1,13 +1,20 @@
     .text
     .global process
+exit:
+    ret
 process:
-    movl A, %eax
-    addl A, %eax
-    addl A, %eax
     movl B, %ecx
     sarl $4, %ecx
-    subl %ecx, %eax
-    movl %eax, R
+    movl A, %eax
+    addl A, %eax
+    jo exit
+    movl $0, %edx
+    subl %ecx, %edx
+    addl %eax, %edx
+    jo exit
+    addl A, %edx
+    jo exit
+    movl %edx, R
     ret
 
 

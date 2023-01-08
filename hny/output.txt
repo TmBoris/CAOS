@@ -1,5 +1,5 @@
 
-a.out:     file format elf32-i386
+A.out:     file format elf32-i386
 
 
 Disassembly of section .interp:
@@ -819,8 +819,8 @@ Disassembly of section .comment:
    3:	3a 20                	cmp    (%eax),%ah
    5:	28 55 62             	sub    %dl,0x62(%ebp)
    8:	75 6e                	jne    78 <__abi_tag-0x154>
-   a:	74 75                	je     81 <__abi_tag-0x14b>
-   c:	20 31                	and    %dh,(%ecx)
+   A:	74 75                	je     81 <__abi_tag-0x14b>
+   C:	20 31                	and    %dh,(%ecx)
    e:	31 2e                	xor    %ebp,(%esi)
   10:	33 2e                	xor    (%esi),%ebp
   12:	30 2d 31 75 62 75    	xor    %ch,0x75627531
@@ -842,8 +842,8 @@ Disassembly of section .debug_aranges:
    4:	02 00                	add    (%eax),%al
    6:	00 00                	add    %al,(%eax)
    8:	00 00                	add    %al,(%eax)
-   a:	04 00                	add    $0x0,%al
-   c:	00 00                	add    %al,(%eax)
+   A:	04 00                	add    $0x0,%al
+   C:	00 00                	add    %al,(%eax)
    e:	00 00                	add    %al,(%eax)
   10:	9d                   	popf   
   11:	11 00                	adc    %eax,(%eax)
@@ -1099,7 +1099,7 @@ Disassembly of section .debug_str:
    2:	6c                   	insb   (%dx),%es:(%edi)
    3:	75 74                	jne    79 <__abi_tag-0x153>
    5:	69 6f 6e 2e 53 00 2f 	imul   $0x2f00532e,0x6e(%edi),%ebp
-   c:	68 6f 6d 65 2f       	push   $0x2f656d6f
+   C:	68 6f 6d 65 2f       	push   $0x2f656d6f
   11:	62 6f 72             	bound  %ebp,0x72(%edi)
   14:	69 73 2f 61 63 6f 73 	imul   $0x736f6361,0x2f(%ebx),%esi
   1b:	2f                   	das    

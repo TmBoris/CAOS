@@ -1,17 +1,5 @@
     .text
     .global call_process
 call_process:
-    push %ebp
-    movl $xxx, %ebp
-    jmp process
-xxx:
-    push %eax
-    push $d
-    call printf
-    movl %ebp, %esp
-    pop %ebp
-    xor %eax, %eax
+    push $process+3
     ret
-
-    .data
-d: .string "%d\n"

@@ -3,10 +3,9 @@
 main:
     push %ebp
     movl %esp, %ebp
-    call getchar
-    call writei32
-    push %eax
-    call tolower
-    call writei32
+    push $3
+    push $4
+    push $-2147483649
+    call my.args.forward
     leave
     ret

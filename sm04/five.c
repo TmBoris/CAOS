@@ -12,7 +12,7 @@ int main(void) {
     for (int64_t i = a - 1; i != b; ++i) {
         for (int64_t j = a - 1; j != b; ++j) {
             if (i == a - 1 && j == a - 1) {
-                printf("%*c", n, ' ');
+                printf("%*C", n, ' ');
             } else if (i == a - 1) {
                 printf(" %*lld", n, j);
             } else if (j == a - 1) {
