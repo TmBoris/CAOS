@@ -5,23 +5,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <malloc.h>
+
+struct tmp;
+
+typedef struct other {
+    struct tmp *xxx;
+} other;
+
+typedef struct tmp {
+    int q;
+} tmp;
+
+void Printer(const void* arr, size_t i) {
+    printf("%d ", arr[i]);
+}
 
 int main(void) {
-//    int a;
-//    int res = scanf("%d", &a);
-//    printf("%d\n", res);
-//    printf("%d", a);
-
-//    int num;
-//    char term;
-//    if(scanf("%d%c", &num, &term) != 2 || term != '\n')
-//        printf("failure\n");
-//    else
-//        printf("valid integer followed by enter key\n");
-//    printf("%d", num);
-
-    const char *str = "13467876556767";
-    int a = atoi(str);
-    printf("%d", a);
     return 0;
 }
+

@@ -25,6 +25,7 @@ void rmv(List **list) {
     }
     rmv(&((*list)->next));
     printf("%d\n", (*list)->data);
+	
     free(*list);
 }
 
