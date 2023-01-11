@@ -7,21 +7,8 @@
 #include <string.h>
 #include <malloc.h>
 
-struct tmp;
-
-typedef struct other {
-    struct tmp *xxx;
-} other;
-
-typedef struct tmp {
-    int q;
-} tmp;
-
-void Printer(const void* arr, size_t i) {
-    printf("%d ", arr[i]);
-}
-
 int main(void) {
+    printf("%d\n", 2 / 1);
     return 0;
 }
 

@@ -1,229 +1,251 @@
+#include "poliz.h"
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "poliz.h"
 
-typedef struct DynArray {
-    size_t size;
-    size_t capacity;
-    int *ptr;
-} DynArray;
+typedef struct List {
+    int value;
+    struct List *next;
+    struct List *prev;
+} List;
 
-int append(struct DynArray *arr, int value) {
-    if (arr->size + 1 > arr->capacity) {
-        size_t newcap = (arr->capacity + 1);
-        int *tmp = reallocarray(arr->ptr, newcap, sizeof(*tmp));
-        if (!tmp) {
-            // Handle allocation error
-            return PE_OUT_OF_MEMORY;
-        }
-        arr->ptr = tmp;
-        arr->capacity = newcap;
+int append(struct List **last, int value) {
+    List *tmp = calloc(1, sizeof(*tmp));
+    if (!tmp) {
+        // Handle allocation error
+        return -PE_OUT_OF_MEMORY;
     }
-    arr->ptr[arr->size++] = value;
+    if (!(*last)) {
+        (*last) = tmp;
+        tmp->value = value;
+    } else {
+        (*last)->next = tmp;
+        (*last)->next->prev = (*last);
+        (*last) = tmp;
+        tmp->value = value;
+    }
     return PE_OK;
 }
 
-int pop(struct DynArray *arr) {
-    int ans = arr->ptr[arr->size - 1];
-    arr->ptr = reallocarray(arr->ptr, arr->size - 1, sizeof(*arr->ptr));
-    arr->size--;
-    arr->capacity--;
+int pop(struct List **last) {
+    int ans = (*last)->value;
+    if (!((*last)->prev)) {
+        free((*last));
+        *last = NULL;
+    } else {
+        (*last) = (*last)->prev;
+        free((*last)->next);
+    }
     return ans;
 }
 
 typedef struct PolizState {
-    struct DynArray *arr;
+    struct List *last;
     int err;
 } PolizState;
 
-int PutOnStack(PolizState *state, int iextra) {
+int put_on_stack(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    return append(state->arr, iextra);
+    return append(&(state->last), iextra);
 }
 
-int Plus(PolizState *state, int iextra) {
+int plus(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    if (state->arr->size < 2) {
-        return PE_STACK_UNDERFLOW;
+    if (state->last == NULL || state->last->prev == NULL) {
+        return -PE_STACK_UNDERFLOW;
     }
-    int a = pop(state->arr);
-    int b = pop(state->arr);
-    append(state->arr,a + b);
+    int a = pop(&(state->last));
+    int b = pop(&(state->last));
+    int c;
+    if (__builtin_add_overflow(a, b, &c)) {
+        return -PE_INT_OVERFLOW;
+    }
+    append(&(state->last), a + b);
     return PE_OK;
 }
 
-int Minus(PolizState *state, int iextra) {
+int minus(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    if (state->arr->size < 2) {
-        return PE_STACK_UNDERFLOW;
+    if (state->last == NULL || state->last->prev == NULL) {
+        return -PE_STACK_UNDERFLOW;
     }
-    int a = pop(state->arr);
-    int b = pop(state->arr);
-    append(state->arr,b - a);
+    int a = pop(&(state->last));
+    int b = pop(&(state->last));
+    int c;
+    if (__builtin_add_overflow(-a, b, &c)) {
+        return -PE_INT_OVERFLOW;
+    }
+    append(&(state->last), b - a);
     return PE_OK;
 }
 
-int Mul(PolizState *state, int iextra) {
+int mul(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    if (state->arr->size < 2) {
-        return PE_STACK_UNDERFLOW;
+    if (state->last == NULL || state->last->prev == NULL) {
+        return -PE_STACK_UNDERFLOW;
     }
-    int a = pop(state->arr);
-    int b = pop(state->arr);
-    append(state->arr,b * a);
+    int a = pop(&(state->last));
+    int b = pop(&(state->last));
+    int c;
+    if (__builtin_mul_overflow(a, b, &c)) {
+        return -PE_INT_OVERFLOW;
+    }
+    append(&(state->last), b * a);
     return PE_OK;
 }
 
-int Der(PolizState *state, int iextra) {
+int dev(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    if (state->arr->size < 2) {
-        return PE_STACK_UNDERFLOW;
+    if (state->last == NULL || state->last->prev == NULL) {
+        return -PE_STACK_UNDERFLOW;
     }
-    int a = pop(state->arr);
-    int b = pop(state->arr);
-    append(state->arr,b / a);
+    int a = pop(&(state->last));
+    int b = pop(&(state->last));
+    if (a == 0) {
+        return -PE_DIVISION_BY_ZERO;
+    }
+    append(&(state->last), b / a);
     return PE_OK;
 }
 
-int Ost(PolizState *state, int iextra) {
+int ost(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    if (state->arr->size < 2) {
-        return PE_STACK_UNDERFLOW;
+    if (state->last == NULL || state->last->prev == NULL) {
+        return -PE_STACK_UNDERFLOW;
     }
-    int a = pop(state->arr);
-    int b = pop(state->arr);
-    append(state->arr,b % a);
+    int a = pop(&(state->last));
+    int b = pop(&(state->last));
+    append(&(state->last), b % a);
     return PE_OK;
 }
 
-int Grid(PolizState *state, int iextra) {
+int grid(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    if (state->arr->size < 1) {
-        return PE_STACK_UNDERFLOW;
+    if (state->last == NULL) {
+        return -PE_STACK_UNDERFLOW;
     }
-    int a = pop(state->arr);
-    append(state->arr, -a);
+    int a = pop(&(state->last));
+    append(&(state->last), -a);
     return PE_OK;
 }
 
-int Read(PolizState *state, int iextra) {
+int rd(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
     int a;
     int res = scanf("%d", &a);
-    if (res < 1) {
-        return PE_READ_FAILED;
+    if (res != 1) {
+        return -PE_READ_FAILED;
     }
-    append(state->arr, a);
+    append(&(state->last), a);
     return PE_OK;
 }
 
-int Write(PolizState *state, int iextra) {
+int wrt(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    if (state->arr->size < 1) {
-        return PE_STACK_UNDERFLOW;
+    if (state->last == NULL) {
+        return -PE_STACK_UNDERFLOW;
     }
-    int a = pop(state->arr);
+    int a = pop(&(state->last));
     printf("%d", a);
     return PE_OK;
 }
 
-int Enter(PolizState *state, int iextra) {
+int enter(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
     printf("\n");
     return PE_OK;
 }
 
-int DelTop(PolizState *state, int iextra) {
+int del_top(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    if (state->arr->size < 1) {
-        return PE_STACK_UNDERFLOW;
+    if (state->last == NULL) {
+        return -PE_STACK_UNDERFLOW;
     }
-    pop(state->arr);
+    pop(&(state->last));
     return PE_OK;
 }
 
-int Del(PolizState *state, int iextra) {
+int del(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    if (state->arr->size < iextra + 1) {
-        return PE_STACK_UNDERFLOW;
+    struct List *tmp = state->last;
+    size_t i = 0;
+    while (i < iextra) {
+        if (!tmp || tmp->prev == NULL) {
+            return -PE_INVALID_INDEX;
+        }
+        tmp = tmp->prev;
+        ++i;
     }
-    DynArray *tmp;
-    for (size_t i = 0; i < iextra; ++i) {
-        int a = pop(state->arr);
-        append(tmp, a);
-    }
-    int litter = pop(state->arr);
-    for (size_t i = 0; i < iextra; ++i) {
-        int a = pop(tmp);
-        append(state->arr, a);
+    if (tmp->prev == NULL) {
+        tmp->next->prev = NULL;
+        free(tmp);
+    } else {
+        tmp->prev->next = tmp->next;
+        tmp->next->prev = tmp->prev;
+        free(tmp);
     }
     return PE_OK;
 }
 
-int Swap(PolizState *state, int iextra) {
+int swp(PolizState *state, int iextra) {
     if (state->err) {
-        return -state->err;
+        return state->err;
     }
-    if (state->arr->size < iextra + 1) {
-        return PE_STACK_UNDERFLOW;
+    struct List *tmp = state->last;
+    size_t i = 0;
+    while (i < iextra) {
+        if (tmp->prev == NULL) {
+            return -PE_INVALID_INDEX;
+        }
+        tmp = tmp->prev;
+        ++i;
     }
-    int first = pop(state->arr);
-    DynArray *tmp;
-    for (size_t i = 0; i < iextra; ++i) {
-        int a = pop(state->arr);
-        append(tmp, a);
-    }
-    int second = pop(state->arr);
-    append(state->arr, first);
-    for (size_t i = 0; i < iextra; ++i) {
-        int a = pop(tmp);
-        append(state->arr, a);
-    }
-    append(state->arr, second);
+    int a = tmp->value;
+    tmp->value = state->last->value;
+    state->last->value = a;
     return PE_OK;
 }
-
-
 
 struct PolizItem *poliz_compile(const char *str) {
     // запишу мысли и пойду вникать в матан
     // в общем нужно будет сделать свич кейс с присваиванием разных функций
     // эти фукнции собственно и нужно будет написать
-    // в стейте просто будут храниться данные, то есть в массиве, который я уже положил в стейт
-    // на нем и будет реализован стек. Отсается в этой функции написать свич кейс(в нем видимо иногда нужно будет что-то
-    // считывать и класть в стек, а нет. Тут считывать ничего не надо, надо просто присвоить нужные функции куда надо
-    // а уже когда будем циклами пробегаться будет происходить магия, в результате которой
-    // будет много движухи со стеком и функциями
-    // пока что не очень понимаю зачем нам всегда передавать экстра в хендлер, но думаю для единообразия
-    // экстра это чиселка, которая используется в d и s
+    // в стейте просто будут храниться данные, то есть в массиве, который я уже
+    // положил в стейт на нем и будет реализован стек. Отсается в этой функции
+    // написать свич кейс(в нем видимо иногда нужно будет что-то считывать и
+    // класть в стек, а нет. Тут считывать ничего не надо, надо просто присвоить
+    // нужные функции куда надо а уже когда будем циклами пробегаться будет
+    // происходить магия, в результате которой будет много движухи со стеком и
+    // функциями пока что не очень понимаю зачем нам всегда передавать экстра в
+    // хендлер, но думаю для единообразия экстра это чиселка, которая
+    // используется в d и s
     size_t spaces = 0;
-    for(size_t i = 0 ; str[i] != '\0' ; i++) {
+    for (size_t i = 0; str[i] != '\0'; i++) {
         if (str[i] == ' ') {
             spaces++;
         }
@@ -231,48 +253,49 @@ struct PolizItem *poliz_compile(const char *str) {
     struct PolizItem *items = calloc(spaces + 2, sizeof(*items));
     for (size_t i = 0, j = 0; i < spaces + 1; ++i, ++j) {
         struct PolizItem item;
-        if (isdigit(*str)) {
-            item.handler = PutOnStack;
-            item.iextra = atoi(str);
+        if (isdigit(str[j]) || (str[j] == '+' && isdigit(str[j + 1])) ||
+            (str[j] == '-' && isdigit(str[j + 1]))) {
+            item.handler = put_on_stack;
+            item.iextra = atoi(&str[j]);
         } else {
-            switch (*str) {
+            switch (str[j]) {
             case '+':
-                item.handler = Plus;
+                item.handler = plus;
                 break;
             case '-':
-                item.handler = Minus;
+                item.handler = minus;
                 break;
             case '*':
-                item.handler = Mul;
+                item.handler = mul;
                 break;
             case '/':
-                item.handler = Der;
+                item.handler = dev;
                 break;
             case '%':
-                item.handler = Ost;
+                item.handler = ost;
                 break;
             case '#':
-                item.handler = Grid;
+                item.handler = grid;
                 break;
             case 'r':
-                item.handler = Read;
+                item.handler = rd;
                 break;
             case 'w':
-                item.handler = Write;
+                item.handler = wrt;
                 break;
             case 'n':
-                item.handler = Enter;
+                item.handler = enter;
                 break;
             case ';':
-                item.handler = DelTop;
+                item.handler = del_top;
                 break;
             case 'd':
-                item.handler = Del;
-                item.iextra = atoi(str + 1);
+                item.handler = del;
+                item.iextra = atoi(&str[j] + 1);
                 break;
             case 's':
-                item.handler = Swap;
-                item.iextra = atoi(str + 1);
+                item.handler = swp;
+                item.iextra = atoi(&str[j] + 1);
                 break;
             }
         }
@@ -292,15 +315,15 @@ struct PolizItem *poliz_compile(const char *str) {
 
 struct PolizState *poliz_new_state() {
     struct PolizState *ps = calloc(1, sizeof(*ps));
-    ps->arr = calloc(1, sizeof(*ps->arr));
     return ps;
 }
 
 void poliz_free_state(struct PolizState *state) {
-    while (state->arr->size > 0) {
-        pop(state->arr);
+    while (state->last != NULL && state->last->prev != NULL) {
+        state->last = state->last->prev;
+        pop(&(state->last->next));
     }
-    free(state->arr);
+    free(state->last);
     free(state);
 }
 
@@ -308,27 +331,31 @@ int poliz_last_error(struct PolizState *state) {
     return state->err;
 }
 
-int main(void) {
-    // нужно в poliz_compile замутить более качественную проверку на числа
-    // потому что они могут начинаться с + или -
-    // еще я точно уверен, что не до конца проставил все ошибки, нужно будет
-    // этот моментик тоже повнимательнее просмотреть
-    // все остальное вроде должно работать
-    // ну или дебаггенр ждет тебя
-    const char *str = "r";
-    struct PolizItem *items = poliz_compile(str);
-    struct PolizState *state = poliz_new_state();
-    for (int i = 0; items[i].handler != NULL; ) {
-        int err = items[i].handler(state, items[i].iextra);
-        if (err < 0) {
-            fprintf(stderr, "error: %d\n", -err);
-            break;
-        } else if (err > 0) {
-            i = err;
-        } else {
-            ++i;
-        }
-    }
-    poliz_free_state(state);
-    free(items);
-}
+ int main(void) {
+     // нужно в poliz_compile замутить более качественную проверку на числа
+     // потому что они могут начинаться с + или -
+     // еще я точно уверен, что не до конца проставил все ошибки, нужно будет
+     // этот моментик тоже повнимательнее просмотреть
+     // все остальное вроде должно работать
+     // ну или дебаггенр ждет тебя
+
+     // все что было до этого поправил, нашел косяк в последних двух хендлерах
+     // нужно будет переписать циклы, потому что сейчас я с начала, а не с
+     // конца
+     // стек раскручиваю
+
+     const char *str = "d";
+     struct PolizItem *items = poliz_compile(str);
+     struct PolizState *state = poliz_new_state();
+     for (int i = 0; items[i].handler != NULL; ++i) {
+         int err = items[i].handler(state, items[i].iextra);
+         if (err < 0) {
+             fprintf(stderr, "error: %d\n", -err);
+             break;
+         } else if (err > 0) {
+             abort();
+         }
+     }
+     poliz_free_state(state);
+     free(items);
+ }
