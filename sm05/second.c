@@ -24,9 +24,9 @@ bsearch2(const void *key, const void *base, size_t nmemb, size_t size,
     bool was = false;
 
     size_t l = 0;
-    size_t r = nmemb - 1;
-    while (l != r) {
-        size_t m = l / 2 + r / 2;
+    size_t r = nmemb;
+    while (l < r) {
+        size_t m = l + (r - l) / 2;
         if (compar(key, base + m * size, user) < 0) {
             r = m;
         } else if (compar(key, base + m * size, user) == 0) {
@@ -39,20 +39,16 @@ bsearch2(const void *key, const void *base, size_t nmemb, size_t size,
     ans.low = l;
 
     l = 0;
-    r = nmemb - 1;
-    while (l != r) {
-        size_t m = l / 2 + r / 2 + 1;
+    r = nmemb;
+    while (l < r) {
+        size_t m = l + (r - l) / 2;
         if (compar(key, base + m * size, user) < 0) {
-            r = m - 1;
+            r = m;
         } else {
-            l = m;
+            l = m + 1;
         }
     }
-    if (compar(key, base + l * size, user) <= 0) {
-        ans.high = l + 1;
-    } else {
-        ans.high = l;
-    }
+    ans.high = l;
 
     if (was) {
         ans.result = 1;
@@ -63,26 +59,22 @@ bsearch2(const void *key, const void *base, size_t nmemb, size_t size,
 }
 
 // int cmp(const int *a, const int *b, int *user) {
-//     if (*a > *b) {
-//         return 1;
-//     } else if (*a == *b) {
-//         return 0;
-//     } else {
-//         return -1;
-//     }
+//     return *a - *b;
 // }
 //
-//  int main(void) {
-//      int arr[11] = {1, 2, 3, 4, 5, 7, 8, 8, 8, 10, 10};
-//      int key = 11;
-//      size_t nmemb = 11;
-//      size_t size = 4;
-//      int user = 0;
+// int main(void) {
+//     int arr[11] = {1, 1, 3, 5, 5, 5, 8, 8, 8, 10, 10};
+//     int key = 8;
+//     size_t nmemb = 11;
+//     size_t size = 4;
+//     int user = 0;
 //
-//      struct BSearchResult ans = bsearch2(&key, arr, nmemb, size, (int
-//      (*)(const void *, const void *, void *)) &cmp, &user); printf("%d ",
-//      ans.result); printf("%zu ", ans.low); printf("%zu ", ans.high);
+//     struct BSearchResult ans =
+//         bsearch2(&key, arr, nmemb, size,
+//                  (int (*)(const void *, const void *, void *)) & cmp, &user);
+//     printf("%d ", ans.result);
+//     printf("%zu ", ans.low);
+//     printf("%zu ", ans.high);
 //
-//      // попробовать заменить на l/2 + r/2 и тестить тестить тестить
-//
-//  }
+//     // попробовать заменить на l/2 + r/2 и тестить тестить тестить
+// }

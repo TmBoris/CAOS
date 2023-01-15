@@ -7,8 +7,20 @@
 #include <string.h>
 #include <malloc.h>
 
+typedef struct A {
+    int a;
+    long long b;
+} A;
+
 int main(void) {
-    printf("%d\n", 2 / 1);
+    A *a = NULL;
+    a = realloc(a, sizeof(*a));
+    if (a == NULL) {
+        printf("%d", -5 / -3);
+    }
+    realloc(a, 0);
+    printf("%d", -5 / -3);
+
     return 0;
 }
 

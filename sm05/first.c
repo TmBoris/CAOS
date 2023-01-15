@@ -6,14 +6,14 @@ enum { A = 1103515245, C = 12345, M = (1 << 31) };
 struct RandomGenerations;
 
 typedef struct RandomGenerator {
-    uint curr;
+    unsigned int curr;
     struct RandomGenerations *ops;
     struct RandomGenerator *next;
     struct RandomGenerator *prev;
     // x2 = (A * x1 + C) % M
 } RandomGenerator;
 
-void food(struct RandomGenerator *gen) {
+static void food(struct RandomGenerator *gen) {
     if (gen->next == NULL) {
         free(gen->ops);
         free(gen);
@@ -24,11 +24,14 @@ void food(struct RandomGenerator *gen) {
     food(gen);
 }
 
-uint foon(struct RandomGenerator *gen) {
+static unsigned int foon(struct RandomGenerator *gen) {
     while (gen->next) {
         gen = gen->next;
     }
     gen->next = calloc(1, sizeof(*gen));
+    if (!gen->next) {
+        return 0;
+    }
     gen->next->prev = gen;
     gen->next->ops = gen->ops;
     gen->next->next = NULL;
@@ -40,12 +43,18 @@ uint foon(struct RandomGenerator *gen) {
 typedef struct RandomGenerations {
     void (*destroy)(RandomGenerator *gen);
 
-    uint (*next)(RandomGenerator *gen);
+    unsigned int (*next)(RandomGenerator *gen);
 } RandomGenerations;
 
-RandomGenerator *random_create(uint seed) {
+RandomGenerator *random_create(unsigned int seed) {
     RandomGenerator *ans = calloc(1, sizeof(*ans));
+    if (!ans) {
+        return NULL;
+    }
     ans->ops = calloc(1, sizeof(*(ans->ops)));
+    if (!ans->ops) {
+        return NULL;
+    }
     ans->ops->destroy = food;
     ans->ops->next = foon;
     ans->next = NULL;
