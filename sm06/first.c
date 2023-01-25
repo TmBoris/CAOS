@@ -15,9 +15,8 @@ int main(int argc, char **argv) {
         int16_t b;
         int32_t c;
         char *new;
-        long num = strtol(argv[i], &new, 0);
-        if (errno != 0 || (num == 0 && strcmp(argv[i], "0") != 0) ||
-            *new != '\0') {
+        long num = strtol(argv[i], &new, 10);
+        if (errno == ERANGE || new == argv[i] || *new != '\0') {
             printf("-1\n");
         } else {
             if (!__builtin_add_overflow(num, zero, &a)) {
@@ -26,6 +25,8 @@ int main(int argc, char **argv) {
                 printf("2\n");
             } else if (!__builtin_add_overflow(num, zero, &c)) {
                 printf("4\n");
+            } else {
+                printf("-1\n");
             }
         }
     }

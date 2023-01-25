@@ -8,10 +8,10 @@ int main() {
 
     {
         __asm__("cpuid"
-                : "=a"(a), "=b"(b), "=c"(c),
-                  "=d"(d)   // The output variables. EAX -> a and vice versa.
+                : "=stack"(a), "=b"(b), "=c"(c),
+                  "=d"(d)   // The output variables. EAX -> stack and vice versa.
                 : "0"(1));  // Put the infotype into EAX.
-        //        printf ("EAX: %b\nEBX: %x\nECX: %x\nEDX: %x\n",a, b, c, d);
+        //        printf ("EAX: %b\nEBX: %x\nECX: %x\nEDX: %x\n",stack, b, c, d);
     }
     int model;
     if (((a & 3840) >> 8) == 6 || ((a & 3840) >> 8) == 15) {

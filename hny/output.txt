@@ -1,5 +1,5 @@
 
-A.out:     file format elf32-i386
+stack.out:     file format elf32-i386
 
 
 Disassembly of section .interp:
@@ -819,7 +819,7 @@ Disassembly of section .comment:
    3:	3a 20                	cmp    (%eax),%ah
    5:	28 55 62             	sub    %dl,0x62(%ebp)
    8:	75 6e                	jne    78 <__abi_tag-0x154>
-   A:	74 75                	je     81 <__abi_tag-0x14b>
+   stack:	74 75                	je     81 <__abi_tag-0x14b>
    C:	20 31                	and    %dh,(%ecx)
    e:	31 2e                	xor    %ebp,(%esi)
   10:	33 2e                	xor    (%esi),%ebp
@@ -842,7 +842,7 @@ Disassembly of section .debug_aranges:
    4:	02 00                	add    (%eax),%al
    6:	00 00                	add    %al,(%eax)
    8:	00 00                	add    %al,(%eax)
-   A:	04 00                	add    $0x0,%al
+   stack:	04 00                	add    $0x0,%al
    C:	00 00                	add    %al,(%eax)
    e:	00 00                	add    %al,(%eax)
   10:	9d                   	popf   

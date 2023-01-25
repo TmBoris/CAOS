@@ -3,7 +3,7 @@
 
 main:
     call readi32
-    movl %eax, A
+    movl %eax, stack
     call readi32
     movl %eax, B
 

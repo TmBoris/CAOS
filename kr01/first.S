@@ -5,21 +5,21 @@ exit:
 process:
     movl B, %ecx
     sarl $4, %ecx
-    movl A, %eax
-    addl A, %eax
+    movl stack, %eax
+    addl stack, %eax
     jo exit
     movl $0, %edx
     subl %ecx, %edx
     addl %eax, %edx
     jo exit
-    addl A, %edx
+    addl stack, %edx
     jo exit
     movl %edx, R
     ret
 
 
     .data
-    .global A, B, R
-A: .int 0
+    .global stack, B, R
+stack: .int 0
 B: .int 0
 R: .int 0

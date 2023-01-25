@@ -109,7 +109,7 @@ j: .int 0
 size: .int 0
 
 
-// A = %eax
+// stack = %eax
 // B = %ebx
 // C = %ecx
 // sizeA = %esi

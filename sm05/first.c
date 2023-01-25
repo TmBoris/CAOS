@@ -53,6 +53,7 @@ RandomGenerator *random_create(unsigned int seed) {
     }
     ans->ops = calloc(1, sizeof(*(ans->ops)));
     if (!ans->ops) {
+        free(ans);
         return NULL;
     }
     ans->ops->destroy = food;

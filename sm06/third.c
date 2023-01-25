@@ -7,7 +7,7 @@
 #include <string.h>
 
 enum {
-    A = 0b10000000,
+    stack = 0b10000000,
     B = 7,
     C = 0b11111,
     D = 0x400,
@@ -28,7 +28,7 @@ int main(void) {
     bool flag = false;
     while ((c = getchar()) != EOF) {
         //        printf("%c", c);
-        if (((A & c) >> B) == 0) {  // 0*******
+        if (((stack & c) >> B) == 0) {  // 0*******
             all_coun++;
             flag = false;
         } else if ((((3 << 6) & c) >> 6) == 2 && flag) {  // 10******

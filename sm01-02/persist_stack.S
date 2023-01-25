@@ -17,7 +17,7 @@ push:
     movl %edx, (%esi, %edi, 4) // write the address of the cell in next array cell
     pop %eax
     cmpl $0, %eax
-    jz putnull // if it is the solution.S element in stack, put -1 in second part of vec cell
+    jz putnull // if it is the solution.S element in Stack, put -1 in second part of vec cell
     movl (%esi, %eax, 4), %edi
     movl %edi, 4(%edx) // if not put an address of previous element
 
@@ -30,7 +30,7 @@ xxx:
 pop:
     call readi32
     movl (%esi, %eax, 4), %edi
-    cmpl $-1, %edi // if stack is empty, just write -1
+    cmpl $-1, %edi // if Stack is empty, just write -1
     jz xxx
     movl (%edi), %eax // if not empty write the highest element
     call writei32
@@ -43,7 +43,7 @@ pop:
 main:
     movl $arr, %esi
     movl $vec, %ecx
-    movl $-1, (%esi) // -1 meands that in that moment stack is empty
+    movl $-1, (%esi) // -1 meands that in that moment Stack is empty
     addl $1, i
     call readi32
     jc quit // leave the programm, if take the carry flag
