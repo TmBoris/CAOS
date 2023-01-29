@@ -23,32 +23,32 @@ bsearch2(const void *key, const void *base, size_t nmemb, size_t size,
     }
     bool was = false;
 
-    size_t l = 0;
-    size_t r = nmemb;
-    while (l < r) {
-        size_t m = l + (r - l) / 2;
-        if (compar(key, base + m * size, user) < 0) {
-            r = m;
-        } else if (compar(key, base + m * size, user) == 0) {
+    size_t left = 0;
+    size_t right = nmemb;
+    while (left < right) {
+        size_t mid = left + (right - left) / 2;
+        if (compar(key, base + mid * size, user) < 0) {
+            right = mid;
+        } else if (compar(key, base + mid * size, user) == 0) {
             was = true;
-            r = m;
+            right = mid;
         } else {
-            l = m + 1;
+            left = mid + 1;
         }
     }
-    ans.low = l;
+    ans.low = left;
 
-    l = 0;
-    r = nmemb;
-    while (l < r) {
-        size_t m = l + (r - l) / 2;
-        if (compar(key, base + m * size, user) < 0) {
-            r = m;
+    left = 0;
+    right = nmemb;
+    while (left < right) {
+        size_t mid = left + (right - left) / 2;
+        if (compar(key, base + mid * size, user) < 0) {
+            right = mid;
         } else {
-            l = m + 1;
+            left = mid + 1;
         }
     }
-    ans.high = l;
+    ans.high = left;
 
     if (was) {
         ans.result = 1;
@@ -57,24 +57,3 @@ bsearch2(const void *key, const void *base, size_t nmemb, size_t size,
     }
     return ans;
 }
-
-// int cmp(const int *a, const int *b, int *user) {
-//     return *a - *b;
-// }
-//
-// int main(void) {
-//     int arr[11] = {1, 1, 3, 5, 5, 5, 8, 8, 8, 10, 10};
-//     int key = 8;
-//     size_t nmemb = 11;
-//     size_t size = 4;
-//     int user = 0;
-//
-//     struct BSearchResult ans =
-//         bsearch2(&key, arr, nmemb, size,
-//                  (int (*)(const void *, const void *, void *)) & cmp, &user);
-//     printf("%d ", ans.result);
-//     printf("%zu ", ans.low);
-//     printf("%zu ", ans.high);
-//
-//     // попробовать заменить на l/2 + r/2 и тестить тестить тестить
-// }

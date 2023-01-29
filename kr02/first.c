@@ -1,38 +1,41 @@
+#include <ctype.h>
+#include <limits.h>
+#include <math.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
-#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 
 void strip_spaces(char *buf) {
     char *prev = buf;
-    while (*buf == ' ') {
+    while (isspace(*buf) && *buf != '\0') {
         ++buf;
     }
-    bool flag = false;
+    if (*buf == '\0') {
+        *prev = '\0';
+        return;
+    }
+    *(prev) = *(buf++);
     while (*buf != '\0') {
-        if (*buf == ' ' && *(buf + 1) == '\0') {
-            if (*prev == ' ') {
-                prev--;
-            }
-            break;
-        } else {
-            if (*buf == ' ' && !flag) {
-                flag = true;
-                *prev = *buf;
-                ++prev;
-            } else if (*buf != ' ') {
-                flag = false;
-                *prev = *buf;
-                ++prev;
-            }
+        if (isspace(*prev) && isspace(*buf)) {
             ++buf;
+        } else if (isspace(*buf)) {
+            *(++prev) = ' ';
+            ++buf;
+        } else {
+            *(++prev) = *(buf++);
         }
     }
-    *prev = '\0';
-
+    if (isspace(*prev)) {
+        *prev = '\0';
+    } else {
+        *(++prev) = '\0';
+    }
 }
 
-int main(void) {
-    char str[] = "  d lkglf f    ";
-    strip_spaces(str);
-    printf("%s\n", str);
-}
+// int main(void) {
+//     char str[] =  "     ";
+//     strip_spaces(str);
+//     printf("%s\n", str);
+// }
