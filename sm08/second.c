@@ -1,12 +1,4 @@
-#include "math.h"
-#include "stdint.h"
-#include <ctype.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <limits.h>
 #include <read_file.h>
-#include <setjmp.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,19 +6,26 @@
 
 enum { BUFFER_SIZE = 4096 };
 
-// struct FileContent {
-//     ssize_t size;
-//     char *data;
-// };
+ struct FileContent {
+     ssize_t size;
+     char *data;
+ };
+
+int max(int f, int s) {
+    if (f < s) {
+        return s;
+    }
+    return f;
+}
 
 struct FileContent read_file(int fd) {
-    struct FileContent f = {.size = 0, .data = NULL};
+    struct FileContent f = {.size = 1, .data = NULL};
     char buf[BUFFER_SIZE];
     ssize_t res;
     size_t cur_size = 0;
     while ((res = read(fd, buf, sizeof(buf))) > 0) {
         if (cur_size + res > f.size) {
-            char *tmp = realloc(f.data, (f.size + res) * 2);
+            char *tmp = realloc(f.data, max(f.size * 2, BUFFER_SIZE));
             if (!tmp) {
                 free(f.data);
                 f.data = NULL;
@@ -34,8 +33,7 @@ struct FileContent read_file(int fd) {
                 return f;
             }
             f.data = tmp;
-            f.size += res;
-            f.size *= 2;
+            f.size = max(f.size * 2, BUFFER_SIZE);
         }
         memcpy(f.data + cur_size, buf, res);
         cur_size += res;
@@ -61,9 +59,9 @@ struct FileContent read_file(int fd) {
     return f;
 }
 
-// int main(void) {
-//     FILE *file = fopen("input.txt", "r");
-//     struct FileContent f = read_file(fileno(file));
-//     printf("%d\n", f.size);
-//     return 0;
-// }
+ int main(void) {
+     FILE *file = fopen("input.txt", "r");
+     struct FileContent f = read_file(fileno(file));
+     printf("%d\n", f.size);
+     return 0;
+ }
