@@ -18,6 +18,21 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+void func(FILE *reader, FILE *writer, int process_number, int max) {
+    while (1) {
+        int num;
+        if (fscanf(reader, "%d", &num) <= 0 || num == max) {
+            fclose(reader);
+            fclose(writer);
+            exit(0);
+        }
+        printf("%d %d\n", process_number, num++);
+        fflush(stdout);
+        fprintf(writer, "%d\n", num);
+        fflush(writer);
+    }
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         perror("where is my maximum!?\n");
@@ -45,18 +60,7 @@ int main(int argc, char *argv[]) {
         FILE *reader = fdopen(pipds2[0], "r");
         FILE *writer = fdopen(pipds1[1], "w");
 
-        while (1) {
-            int num;
-            if (fscanf(reader, "%d", &num) <= 0 || num == max) {
-                fclose(reader);
-                fclose(writer);
-                return 0;
-            }
-            printf("%d %d\n", 1, num++);
-            fflush(stdout);
-            fprintf(writer, "%d\n", num);
-            fflush(writer);
-        }
+        func(reader, writer, 1, max);
     }
     if (!(second = fork())) {
         close(pipds2[0]);
@@ -65,18 +69,7 @@ int main(int argc, char *argv[]) {
         FILE *reader = fdopen(pipds1[0], "r");
         FILE *writer = fdopen(pipds2[1], "w");
 
-        while (1) {
-            int num;
-            if (fscanf(reader, "%d", &num) <= 0 || num == max) {
-                fclose(reader);
-                fclose(writer);
-                return 0;
-            }
-            printf("%d %d\n", 2, num++);
-            fflush(stdout);
-            fprintf(writer, "%d\n", num);
-            fflush(writer);
-        }
+        func(reader, writer, 2, max);
     }
     FILE *file = fdopen(pipds2[1], "w");
     fprintf(file, "%d\n", 1);

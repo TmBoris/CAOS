@@ -22,33 +22,6 @@
 
 
 int main() {
-
-    int pipds[2];
-    if (pipe(pipds) == -1) {
-        perror("pipe failed\n");
-        exit(1);
-    }
-
-    FILE *reader = fdopen(pipds[0], "r");
-    FILE *writer = fdopen(pipds[1], "w");
-
-    pid_t pid = fork();
-    if (pid == 0) {
-        sleep(1);
-        for (size_t i = 0; i < 10; ++i) {
-            int num;
-            if (fscanf(reader, "%d", &num) != 1) {
-                perror("scanf\n");
-                exit(1);
-            }
-            printf("%d\n", num);
-            fflush(stdout);
-        }
-    }
-    for (size_t i = 0; i < 10; ++i) {
-        fprintf(writer, "%d\n", i);
-        fflush(writer);
-    }
-
-    wait(NULL);
+    std::cout << "hello, world!" << std::endl;
+    return 0;
 }

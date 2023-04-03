@@ -73,54 +73,55 @@ int mysystem(const char *cmd) {
     for (size_t i = 0; i < spaces + 2; ++i) {
         argv[i].buf = NULL;
     }
-    size_t i = 0;
-    size_t j = 0;
-    size_t cur_size = 0;
-    size_t buf_size = 0;
-    while (argstr[i] != '\0') {
-        if (isspace(argstr[i])) {
-            if (cur_size + 1 >= buf_size) {
-                char *tmp = realloc(argv[j].buf, cur_size + 1);
-                if (!tmp) {
-                    perror("can't realloc space");
-                    exit(1);
-                }
-                argv[j].buf = tmp;
-            }
-            argv[j].buf[cur_size] = '\0';
-            cur_size = 0;
-            buf_size = 0;
-            j++;
-        } else {
-            if (cur_size + 1 >= buf_size) {
-                char *tmp =
-                    realloc(argv[j].buf, max(MINSIZEOFBUF, cur_size * 2));
-                if (!tmp) {
-                    perror("can't realloc space");
-                    exit(1);
-                }
-                argv[j].buf = tmp;
-                buf_size = max(MINSIZEOFBUF, cur_size * 2);
-            }
-            argv[j].buf[cur_size] = argstr[i];
-            cur_size++;
-        }
-        ++i;
-    }
-    if (cur_size + 1 >= buf_size) {
-        char *tmp = realloc(argv[j].buf, cur_size + 1);
-        if (!tmp) {
-            perror("can't realloc space");
-            exit(1);
-        }
-        argv[j].buf = tmp;
-    }
-    argv[j].buf[cur_size] = '\0';
-    free(argstr);
     pid_t pid = fork();
     if (pid < 0) {
         return -1;
     } else if (pid == 0) {
+        size_t i = 0;
+        size_t j = 0;
+        size_t cur_size = 0;
+        size_t buf_size = 0;
+        while (argstr[i] != '\0') {
+            if (isspace(argstr[i])) {
+                if (cur_size + 1 >= buf_size) {
+                    char *tmp = realloc(argv[j].buf, cur_size + 1);
+                    if (!tmp) {
+                        perror("can't realloc space");
+                        exit(1);
+                    }
+                    argv[j].buf = tmp;
+                }
+                argv[j].buf[cur_size] = '\0';
+                cur_size = 0;
+                buf_size = 0;
+                j++;
+            } else {
+                if (cur_size + 1 >= buf_size) {
+                    char *tmp =
+                        realloc(argv[j].buf, max(MINSIZEOFBUF, cur_size * 2));
+                    if (!tmp) {
+                        perror("can't realloc space");
+                        exit(1);
+                    }
+                    argv[j].buf = tmp;
+                    buf_size = max(MINSIZEOFBUF, cur_size * 2);
+                }
+                argv[j].buf[cur_size] = argstr[i];
+                cur_size++;
+            }
+            ++i;
+        }
+        if (cur_size + 1 >= buf_size) {
+            char *tmp = realloc(argv[j].buf, cur_size + 1);
+            if (!tmp) {
+                perror("can't realloc space");
+                exit(1);
+            }
+            argv[j].buf = tmp;
+        }
+        argv[j].buf[cur_size] = '\0';
+        free(argstr);
+
         int res = execvp(argv[0].buf, (char(**))argv);
         if (res == -1) {
             perror("execvp failed");
