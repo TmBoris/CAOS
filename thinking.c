@@ -22,6 +22,18 @@
 
 
 int main() {
-    std::cout << "hello, world!" << std::endl;
+    int fd[2];
+    pipe(fd);
+
+    FILE *reader = fdopen(fd[0], "r");
+    FILE *writer = fdopen(fd[0], "w");
+    fclose(reader);
+    FILE *reader2 = fdopen(fd[1], "r");
+    fprintf(writer, "%d\n", 10000);
+//    int ans;
+//    fscanf(reader2, "%d", &ans);
+//    printf("%d\n", ans);
+//    fclose(writer);
+//    fclose(reader2);
     return 0;
 }
