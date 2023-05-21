@@ -37,8 +37,9 @@ int main(void) {
     sigset_t possible_signals, oldmask;
 
     sigemptyset(&possible_signals);
+    sigemptyset(&oldmask);
     sigaddset(&possible_signals, SIGUSR1 | SIGUSR2 | SIGTERM);
-    sigprocmask(SIG_BLOCK, &possible_signals, &oldmask);
+    sigprocmask(SIG_SETMASK, &possible_signals, NULL);
 
     sigaction(SIGUSR2, &sa, NULL);
     sigaction(SIGUSR1, &sa, NULL);
@@ -54,7 +55,8 @@ int main(void) {
         } else if (last_signal == SIGUSR2) {
             second++;
         } else {
-            exit(0);
+            return 0;
         }
     }
+    return 0;
 }

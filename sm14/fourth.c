@@ -61,7 +61,6 @@ int create_listener(char *port) {
 }
 
 void handler(int signal) {
-    kill(0, SIGTERM);
     exit(0);
 }
 
@@ -87,7 +86,7 @@ int main(int argc, char *argv[]) {
             dup2(connection, STDOUT_FILENO);
             close(connection);
             close(sock);
-            execv(argv[2], argv + 2);
+            execvp(argv[2], argv + 2);
             _exit(1);
         } else {
             close(connection);

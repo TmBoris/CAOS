@@ -1,7 +1,6 @@
 #define _GNU_SOURCE
 #include "math.h"
 #include "stdint.h"
-#include <arpa/inet.h>
 #include <ctype.h>
 #include <dlfcn.h>
 #include <errno.h>
@@ -21,15 +20,20 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-
-enum { BUFSIZE = 1025, IPADDRSIZE = 100 };
+#include <netdb.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 int create_listener(char *service) {
     struct addrinfo *res = NULL;
     int gai_err;
     struct addrinfo hint = {
         .ai_family = AF_INET6,
-        .ai_socktype = SOCK_DGRAM,
+        .ai_socktype = SOCK_STREAM,
+        .ai_flags = AI_PASSIVE,
     };
     if ((gai_err = getaddrinfo(NULL, service, &hint, &res))) {
         fprintf(stderr, "gai error: %s\n", gai_strerror(gai_err));
@@ -39,52 +43,37 @@ int create_listener(char *service) {
     for (struct addrinfo *ai = res; ai; ai = ai->ai_next) {
         sock = socket(ai->ai_family, ai->ai_socktype, 0);
         if (sock < 0) {
+            perror("socket");
             continue;
         }
-        int one = 1;
-        setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &one, sizeof(one));
-        if (bind(sock, ai->ai_addr, ai->ai_addrlen) == 0) {
-            break;
+        if (bind(sock, ai->ai_addr, ai->ai_addrlen) < 0) {
+            perror("bind");
+            close(sock);
+            sock = -1;
+            continue;
         }
+        if (listen(sock, SOMAXCONN) < 0) {
+            perror("listen");
+            close(sock);
+            sock = -1;
+            continue;
+        }
+        break;
     }
     freeaddrinfo(res);
     return sock;
 }
 
-void handler(int signal) {
-    exit(0);
-}
-
 int main(int argc, char *argv[]) {
-    struct sockaddr_in6 peer_addr;
-    socklen_t peer_addr_len;
-    struct sigaction sigact = {
-        .sa_handler = handler,
-        .sa_flags = SA_RESTART,
-    };
-    sigaction(SIGTERM, &sigact, NULL);
     if (argc != 2) {
-        perror("input format: UDP_PORT\n");
+        fprintf(stderr, "Usage: %s SERVICE\n", argv[0]);
         return 1;
     }
     int sock = create_listener(argv[1]);
     if (sock < 0) {
         return 1;
     }
-    while (1) {
-        char buf[BUFSIZE];
-        peer_addr_len = sizeof(peer_addr);
-        ssize_t nread = recvfrom(sock, buf, BUFSIZE, 0,
-                                 (struct sockaddr *)&peer_addr, &peer_addr_len);
-        if (nread == -1) {
-            continue; /* Ignore failed request */
-        }
-        buf[nread] = '\0';
-        struct in6_addr ia = peer_addr.sin6_addr;
-        char ip_addr[IPADDRSIZE];
-        inet_ntop(AF_INET6, &ia, ip_addr, IPADDRSIZE);
-        printf("[%s:%d] %s\n", ip_addr, ntohs(peer_addr.sin6_port), buf);
-        fflush(stdout);
-    }
+    int connection = accept(sock, NULL, NULL);
+
     close(sock);
 }
