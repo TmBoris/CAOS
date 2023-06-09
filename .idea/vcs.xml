@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/sm07/yabloko-public" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/sm12/fibers-1" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/sm12/five" vcs="Git" />
-  </component>
-</project>
