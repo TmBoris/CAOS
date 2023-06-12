@@ -13,16 +13,24 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <sys/time.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
 
-enum { SECINDAY = 86400 };
+enum { NSECINMSEC = 1000, NSECINSEC = 1000000000 };
+
+void handler(int signal) {
+    exit(0);
+}
 
 int main() {
-    signal(SIGALRM, SIG_IGN);
+    struct sigaction sigact = {
+        .sa_handler = handler,
+        .sa_flags = SA_RESTART,
+    };
+    sigaction(SIGALRM, &sigact, NULL);
     struct timespec time;
 
     if ((scanf("%ld %ld", &time.tv_sec, &time.tv_nsec)) != 2) {
@@ -30,23 +38,26 @@ int main() {
         exit(1);
     }
 
-    // struct timespec now;
-    // timespec_get(&now, TIME_UTC);
+    struct timespec now;
+    timespec_get(&now, TIME_UTC);
 
-    // time.tv_sec = now.tv_sec + 1000;
-    // time.tv_nsec = now.tv_nsec;
-
-    // if (time.tv_sec < now.tv_sec || (time.tv_sec < now.tv_sec && time.tv_nsec < now.tv_nsec)) {
-    //     exit(0);
-    // }
+    if (time.tv_sec < now.tv_sec ||
+        (time.tv_sec == now.tv_sec && time.tv_nsec < now.tv_nsec)) {
+        exit(0);
+    }
 
     struct itimerval st;
-    st.it_value.tv_sec = time.tv_sec;
-    st.it_value.tv_usec = time.tv_nsec * 1000;
+    st.it_value.tv_sec = time.tv_sec - now.tv_sec;
+    if (time.tv_nsec >= now.tv_nsec) {
+        st.it_value.tv_usec = (time.tv_nsec - now.tv_nsec) / NSECINMSEC;
+    } else {
+        st.it_value.tv_usec =
+            (NSECINSEC + time.tv_nsec - now.tv_nsec) / NSECINMSEC;
+        --st.it_value.tv_sec;
+    }
     st.it_interval.tv_sec = 0;
     st.it_interval.tv_usec = 0;
 
-    // setitimer(ITIMER_REAL, &st, NULL);
     if (setitimer(ITIMER_REAL, &st, NULL) == -1) {
         exit(0);
     }
