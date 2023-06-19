@@ -22,9 +22,15 @@
 
 
 int main() {
-
-    int* mem = calloc(5, 4);
-    printf("%p\n", mem);
-    printf("%p\n", mem + 1);
+    char* a = "abacaba";
+    char b[100];
+    strcpy(b, a);
+    char c[100];
+    snprintf(c, 100, "%s", a);
+    for (size_t i = 0; i < 7; ++i) {
+        if (c[i] == *(b + i)) {
+            printf("1\n");
+        }
+    }
     return 0;
 }
