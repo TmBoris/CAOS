@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="67d8b8d2-86b1-4991-a5fe-d9396266dd53" name="Changes" comment="in process of solving tasks">
+      <change afterPath="$PROJECT_DIR$/sm12/five/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/3.22.1/CMakeCCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/3.22.1/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/3.22.1/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/3.22.1/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/3.22.1/CMakeSystem.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/3.22.1/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/3.22.1/CompilerIdC/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/3.22.1/CompilerIdCXX/a.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/Makefile2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/DependInfo.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/build.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/cmake_clean.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/compiler_depend.internal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/compiler_depend.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/compiler_depend.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/depend.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/fibers.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/fibers.cpp.o.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/flags.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/link.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/five.dir/progress.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/CMakeFiles/progress.marks" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/cmake_install.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sm12/five/build/five" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sm12/fibers-1" beforeDir="false" afterPath="$PROJECT_DIR$/sm12/fibers-1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sm12/fibers-1/generators.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/sm12/fibers-1/generators.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sm12/five" beforeDir="false" afterPath="$PROJECT_DIR$/sm12/five" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sm12/five/fibers.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/sm12/five/fibers.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="clangTidyViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2HOaQYDLUwmbdpYumc2p9MSZZAy" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.advertisement.text.has.clang-format&quot;: &quot;true&quot;,
+    &quot;cf.advertisement.text.overridden&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/boris/CLionProjects/think&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;copyright&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sm12" />
+      <recent name="$PROJECT_DIR$/kr03" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/sm03" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Intel Intrinsics Guide" />
+    </key>
+  </component>
+  <component name="RunManager" selected="C/C++ File.kr04/fourth.c">
+    <configuration name="kr04/first.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" PROGRAM_PARAMS="&quot;1 + 2&quot;" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acos" TARGET_NAME="first.c" CONFIG_NAME="kr04/first.c">
+      <option name="compilerOptions" value="-fsanitize=address" />
+      <option name="sourceFile" value="kr04/first.c" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="kr04/fourth.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" PROGRAM_PARAMS="-3.14159265359 100 .0628318530718" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acos" TARGET_NAME="fourth.c" CONFIG_NAME="kr04/fourth.c">
+      <option name="compilerOptions" value="-fsanitize=address -lm" />
+      <option name="sourceFile" value="kr04/fourth.c" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="kr04/second.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acos" TARGET_NAME="second.c" CONFIG_NAME="kr04/second.c">
+      <option name="compilerOptions" value="-fsanitize=address" />
+      <option name="sourceFile" value="kr04/second.c" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="thinking.c" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="acos" TARGET_NAME="thinking.c" CONFIG_NAME="thinking.c">
+      <option name="compilerFile" value="/bin/gcc" />
+      <option name="compilerOptions" value="-fsanitize=address" />
+      <option name="sourceFile" value="thinking.c" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="C/C++ File.kr04/first.c" />
+      <item itemvalue="C/C++ File.thinking.c" />
+      <item itemvalue="C/C++ File.kr04/second.c" />
+      <item itemvalue="C/C++ File.kr04/fourth.c" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="67d8b8d2-86b1-4991-a5fe-d9396266dd53" name="Changes" comment="" />
+      <created>1668158567672</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668158567672</updated>
+      <workItem from="1668158568819" duration="682000" />
+      <workItem from="1668192175694" duration="1124000" />
+      <workItem from="1668284725120" duration="1887000" />
+      <workItem from="1668320759219" duration="9173000" />
+      <workItem from="1668371248979" duration="5000" />
+      <workItem from="1668762864189" duration="1519000" />
+      <workItem from="1668949870128" duration="1142000" />
+      <workItem from="1669191144484" duration="8076000" />
+      <workItem from="1669209269002" duration="6204000" />
+      <workItem from="1669356877908" duration="3374000" />
+      <workItem from="1669377023891" duration="18931000" />
+      <workItem from="1669530920631" duration="20892000" />
+      <workItem from="1669663742409" duration="3068000" />
+      <workItem from="1669726933078" duration="129000" />
+      <workItem from="1669727073381" duration="10000" />
+      <workItem from="1669835762459" duration="439000" />
+      <workItem from="1669907877996" duration="6000" />
+      <workItem from="1669969084943" duration="34864000" />
+      <workItem from="1670304195983" duration="14557000" />
+      <workItem from="1670394543524" duration="6000" />
+      <workItem from="1670516728338" duration="9507000" />
+      <workItem from="1670561364522" duration="5573000" />
+      <workItem from="1670566949509" duration="16674000" />
+      <workItem from="1670659715580" duration="764000" />
+      <workItem from="1670668050992" duration="11849000" />
+      <workItem from="1671179300494" duration="771000" />
+      <workItem from="1671698682369" duration="1000" />
+      <workItem from="1671789214477" duration="14000" />
+      <workItem from="1671972195778" duration="6000" />
+      <workItem from="1672075036070" duration="633000" />
+      <workItem from="1673023410766" duration="32437000" />
+      <workItem from="1673158026483" duration="8079000" />
+      <workItem from="1673167430290" duration="5703000" />
+      <workItem from="1673268144957" duration="18066000" />
+      <workItem from="1673328753389" duration="4779000" />
+      <workItem from="1673343628286" duration="22450000" />
+      <workItem from="1673434228912" duration="260000" />
+      <workItem from="1673436678289" duration="656000" />
+      <workItem from="1673437595040" duration="8000" />
+      <workItem from="1673438532700" duration="2701000" />
+      <workItem from="1673457224513" duration="601000" />
+      <workItem from="1673566027315" duration="9000" />
+      <workItem from="1673593077344" duration="7000" />
+      <workItem from="1673627595658" duration="6000" />
+      <workItem from="1673697807280" duration="12000" />
+      <workItem from="1673697833479" duration="12000" />
+      <workItem from="1673697956512" duration="40762000" />
+      <workItem from="1673801598713" duration="14000" />
+      <workItem from="1673880324935" duration="12255000" />
+      <workItem from="1674239279070" duration="22000" />
+      <workItem from="1674248087300" duration="2572000" />
+      <workItem from="1674296270112" duration="400000" />
+      <workItem from="1674296682909" duration="6367000" />
+      <workItem from="1674455938916" duration="2438000" />
+      <workItem from="1674571340309" duration="14000" />
+      <workItem from="1674633071151" duration="913000" />
+      <workItem from="1674756762362" duration="1749000" />
+      <workItem from="1674987308812" duration="612000" />
+      <workItem from="1674987936668" duration="23440000" />
+      <workItem from="1675524394118" duration="455000" />
+      <workItem from="1675679705812" duration="3565000" />
+      <workItem from="1675684311284" duration="11871000" />
+      <workItem from="1675794839644" duration="8878000" />
+      <workItem from="1676033032372" duration="26587000" />
+      <workItem from="1676295915602" duration="16377000" />
+      <workItem from="1676452447260" duration="1504000" />
+      <workItem from="1676476409510" duration="73000" />
+      <workItem from="1676574379397" duration="215000" />
+      <workItem from="1676574659397" duration="2882000" />
+      <workItem from="1676612238746" duration="38194000" />
+      <workItem from="1676897080319" duration="4172000" />
+      <workItem from="1676958849503" duration="169000" />
+      <workItem from="1676969738458" duration="1292000" />
+      <workItem from="1676981917150" duration="2455000" />
+      <workItem from="1677054240466" duration="5923000" />
+      <workItem from="1677069445619" duration="6429000" />
+      <workItem from="1677503976278" duration="2196000" />
+      <workItem from="1677506358530" duration="3000" />
+      <workItem from="1677506637480" duration="2000" />
+      <workItem from="1677507115892" duration="1807000" />
+      <workItem from="1677509557068" duration="3000" />
+      <workItem from="1677510056541" duration="3000" />
+      <workItem from="1677510437607" duration="37603000" />
+      <workItem from="1677856683937" duration="41606000" />
+      <workItem from="1678078844470" duration="693000" />
+      <workItem from="1678121651037" duration="1153000" />
+      <workItem from="1678199285166" duration="2000" />
+      <workItem from="1678381751358" duration="10958000" />
+      <workItem from="1678428639678" duration="3357000" />
+      <workItem from="1678464712786" duration="1610000" />
+      <workItem from="1678469084211" duration="3497000" />
+      <workItem from="1678708956880" duration="63000" />
+      <workItem from="1678712535817" duration="6010000" />
+      <workItem from="1678775548742" duration="7475000" />
+      <workItem from="1678982093476" duration="1063000" />
+      <workItem from="1678995455652" duration="1000" />
+      <workItem from="1678995675050" duration="2078000" />
+      <workItem from="1679318659864" duration="9000" />
+      <workItem from="1679382609889" duration="9880000" />
+      <workItem from="1679496063774" duration="41187000" />
+      <workItem from="1679907925598" duration="8000" />
+      <workItem from="1679986798091" duration="7788000" />
+      <workItem from="1680007852829" duration="44348000" />
+      <workItem from="1680116488404" duration="2000" />
+      <workItem from="1680116766900" duration="2131000" />
+      <workItem from="1680156250323" duration="20523000" />
+      <workItem from="1680244456829" duration="4473000" />
+      <workItem from="1680430700030" duration="92000" />
+      <workItem from="1680430929752" duration="122000" />
+      <workItem from="1680941283837" duration="4000" />
+      <workItem from="1680954108927" duration="3613000" />
+      <workItem from="1681060436548" duration="50000" />
+      <workItem from="1681157316801" duration="14465000" />
+      <workItem from="1681317753930" duration="31000" />
+      <workItem from="1681401771786" duration="6530000" />
+      <workItem from="1681410851937" duration="1445000" />
+      <workItem from="1681733506420" duration="14000" />
+      <workItem from="1682009946970" duration="11506000" />
+      <workItem from="1682163629610" duration="5581000" />
+      <workItem from="1683304869660" duration="22253000" />
+      <workItem from="1683438442353" duration="4382000" />
+      <workItem from="1684582748936" duration="5222000" />
+      <workItem from="1686326494370" duration="353000" />
+    </task>
+    <task id="LOCAL-00001" summary="in process of solving tasks">
+      <created>1673330134692</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1673330134692</updated>
+    </task>
+    <task id="LOCAL-00002" summary="in process of solving tasks">
+      <created>1673330156394</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673330156394</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="in process of solving tasks" />
+    <option name="LAST_COMMIT_MESSAGE" value="in process of solving tasks" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm03/test_second.S</url>
+          <line>2</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm04/first.C</url>
+          <line>6</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm04/fourth.c</url>
+          <line>5</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/kr01/simpleio.S</url>
+          <line>120</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm05/second.c</url>
+          <line>14</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm05/third.c</url>
+          <line>26</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm06/first.c</url>
+          <line>9</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm06/third.c</url>
+          <line>23</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/kr02/first.c</url>
+          <line>11</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/kr02/fourth.c</url>
+          <line>12</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/kr02/fourth.c</url>
+          <line>13</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm08/first.c</url>
+          <line>66</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm08/first.c</url>
+          <line>23</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm08/second.c</url>
+          <line>29</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm08/third.c</url>
+          <line>42</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm08/five.c</url>
+          <line>80</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm08/five.c</url>
+          <line>18</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm09/first.c</url>
+          <line>47</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm09/third.c</url>
+          <line>77</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm09/five.c</url>
+          <line>35</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm09/five.c</url>
+          <line>21</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm10/first.c</url>
+          <line>22</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm10/test.S</url>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/kr03/prev_4.c</url>
+          <line>16</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/kr03/prev_4.c</url>
+          <line>26</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/kr03/five.c</url>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm13/five.c</url>
+          <line>26</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm13/five.c</url>
+          <line>83</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm13/five.c</url>
+          <line>114</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm12/five/fibers.cpp</url>
+          <line>87</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm12/five/fibers.cpp</url>
+          <line>198</line>
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm12/five/fibers.cpp</url>
+          <line>105</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/sm12/five/fibers.cpp</url>
+          <line>32</line>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
